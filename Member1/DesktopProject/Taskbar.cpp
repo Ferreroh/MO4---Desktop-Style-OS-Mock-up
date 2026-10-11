@@ -48,7 +48,6 @@ void DrawAppButton(
         ImGui::GetStyle().FrameRounding
     );
 
-    // Ignore the hidden ## button ID when measuring the icon.
     const char* iconEnd = icon;
     while (*iconEnd != '\0' &&
            !(iconEnd[0] == '#' && iconEnd[1] == '#')) {
@@ -109,7 +108,7 @@ void RenderTaskbar(AppState& appState) {
     if (ImGui::Begin("##Taskbar", nullptr, flags)) {
         ImGui::SetCursorPosY(9.0f);
 
-       // 0. Power
+       // Power
     const char* powerIcon = "\xef\x80\x91";
         ImVec2 size(42.0f, 34.0f);
         ImVec2 pos = ImGui::GetCursorScreenPos();
@@ -133,7 +132,7 @@ void RenderTaskbar(AppState& appState) {
 ImGui::SameLine(0.0f, 8.0f);
 
        
-        // 1. System Information - Desktop icon
+        // System Information
         DrawAppButton(
             "\xef\x84\x88##system_info",
             "System Information",
@@ -143,7 +142,7 @@ ImGui::SameLine(0.0f, 8.0f);
 
         ImGui::SameLine(0.0f, 8.0f);
 
-        // 2. Calculator - Calculator icon
+        // Calculator
         DrawAppButton(
             "\xef\x87\xac##calculator",
             "Calculator",
@@ -153,7 +152,7 @@ ImGui::SameLine(0.0f, 8.0f);
 
         ImGui::SameLine(0.0f, 8.0f);
 
-        // 3. Media Player - Music icon
+        // Media Player
         DrawAppButton(
             "\xef\x80\x81##media_player",
             "Media Player",
@@ -163,7 +162,7 @@ ImGui::SameLine(0.0f, 8.0f);
 
         ImGui::SameLine(0.0f, 8.0f);
 
-        // 4. Task Manager - Chart bar icon
+        // Task Manager 
         DrawAppButton(
             "\xef\x82\x80##task_manager",
             "Task Manager",

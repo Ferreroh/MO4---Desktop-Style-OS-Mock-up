@@ -41,8 +41,6 @@ int main(int argc, char** argv) {
     glfwSwapInterval(1);
 
     // Initialize Dear ImGui.
-  
-    // Initialize Dear ImGui.
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
 
