@@ -1,0 +1,20 @@
+.vs/
+build/
+**/build/
+**/out/build/
+*.obj
+*.o
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.idb
+*.pch
+*.tlog
+*.log
+
+# macOS metadata
+.DS_Store
+__MACOSX/
+._*
