@@ -1,4 +1,10 @@
-DESKTOP MOCK-UP
+CSOPESY MO4 - DESKTOP MOCK-UP
+GROUP 8
+1. Angel June Ferrer
+2. Betina Heart Rodrigo
+3. Rob Nigel Rogacion
+
+ENTRY FILE: main.cpp
 
 HOW IT WORKS
 The program opens a desktop with a background color, a live clock,
@@ -57,3 +63,8 @@ Allowed values:
 
 Window sizes and color values must be whole numbers.
 TASKBAR_POSITION currently controls the PWR button position.
+
+SAFE SHUTDOWN
+Use the power icon on the taskbar to end the program. It sets the
+shared shutdown request, exits the frame loop, releases the Dear ImGui
+backends and context, destroys the GLFW window, and terminates GLFW.
