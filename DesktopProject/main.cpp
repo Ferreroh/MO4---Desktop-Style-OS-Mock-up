@@ -62,6 +62,7 @@ int main(int argc, char** argv) {
         0xf080, 0xf080, // Chart bar icon
         0xf108, 0xf108, // Desktop icon
         0xf1ec, 0xf1ec, // Calculator icon
+        0xf1f8, 0xf1f8, // Stop icon (End Task)
         0
     };
 
