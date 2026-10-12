@@ -33,7 +33,7 @@ add_library(imgui STATIC
 target_include_directories(imgui PUBLIC ${imgui_SOURCE_DIR} ${imgui_SOURCE_DIR}/backends)
 target_link_libraries(imgui PUBLIC glfw OpenGL::GL ${CMAKE_DL_LIBS})
 
-add_executable(DesktopMockup main.cpp Config.cpp Desktop.cpp Taskbar.cpp Applications.cpp)
+add_executable(DesktopMockup main.cpp Config.cpp Desktop.cpp Taskbar.cpp Applications.cpp TaskManager.cpp)
 target_link_libraries(DesktopMockup PRIVATE imgui)
 
 # Keep one editable configuration file in the source folder.

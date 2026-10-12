@@ -6,6 +6,7 @@
 #include "Desktop.h"
 #include "Taskbar.h"
 #include "Applications.h"
+#include "TaskManager.h"
 
 #include <cstdio>
 
@@ -109,6 +110,7 @@ int main(int argc, char** argv) {
 
         RenderApplications(appState, config);
         RenderTaskbar(appState);
+        RenderTaskManager(appState, config);
 
         RenderClock(config);
 

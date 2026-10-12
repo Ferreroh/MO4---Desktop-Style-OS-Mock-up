@@ -6,9 +6,11 @@
 #include <algorithm>
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
+#include <string>
 
 // ============================================================
-// CALCULATOR STATE
+// CALCULATOR AND MEDIA PLAYER STATE
 // ============================================================
 
 namespace
@@ -50,11 +52,11 @@ namespace
 
     void EnterDigit(char digit)
     {
-        std::size_t length = std::char_traits<char>::length(
-            calculatorDisplay
-        );
+        std::size_t length =
+            std::char_traits<char>::length(calculatorDisplay);
 
-        if (startNewNumber || length >= sizeof(calculatorDisplay) - 1)
+        if (startNewNumber ||
+            length >= sizeof(calculatorDisplay) - 1)
         {
             calculatorDisplay[0] = digit;
             calculatorDisplay[1] = '\0';
@@ -90,9 +92,8 @@ namespace
 
         if (std::strchr(calculatorDisplay, '.') == nullptr)
         {
-            std::size_t length = std::char_traits<char>::length(
-                calculatorDisplay
-            );
+            std::size_t length =
+                std::char_traits<char>::length(calculatorDisplay);
 
             if (length < sizeof(calculatorDisplay) - 1)
             {
@@ -165,25 +166,23 @@ namespace
     // MEDIA PLAYER STATE
     // ========================================================
 
-    
-const char* tracks[] =
-{
-    "Milky Way",
-    "Be With You",
-    "Love Is",
-    "Someday",
-    "Running to Vancouver"
-};
+    const char* tracks[] =
+    {
+        "Milky Way",
+        "Be With You",
+        "Love Is",
+        "Someday",
+        "Running to Vancouver"
+    };
 
-const char* artists[] =
-{
-    "The Ridleys",
-    "The Ridleys",
-    "The Ridleys",
-    "The Ridleys",
-    "The Ridleys"
-};
-
+    const char* artists[] =
+    {
+        "The Ridleys",
+        "The Ridleys",
+        "The Ridleys",
+        "The Ridleys",
+        "The Ridleys"
+    };
 
     constexpr int trackCount =
         static_cast<int>(sizeof(tracks) / sizeof(tracks[0]));
@@ -227,7 +226,6 @@ void DrawCustomTitleBar(
 
     ImDrawList* drawList = ImGui::GetWindowDrawList();
 
-    // Draw the title bar background.
     drawList->AddRectFilled(
         windowPos,
         ImVec2(
@@ -237,14 +235,12 @@ void DrawCustomTitleBar(
         ImGui::GetColorU32(ImGuiCol_TitleBgActive)
     );
 
-    // Draw the window title.
     drawList->AddText(
         ImVec2(windowPos.x + 10.0f, windowPos.y + 9.0f),
         ImGui::GetColorU32(ImGuiCol_Text),
         title
     );
 
-    // Create a draggable area that stops before the buttons.
     const float dragAreaWidth = std::max(
         1.0f,
         windowWidth - 2.0f * buttonSize - 12.0f
@@ -271,7 +267,7 @@ void DrawCustomTitleBar(
         );
     }
 
-    // Minimize button.
+    // Minimize button
     ImGui::SetCursorScreenPos(
         ImVec2(
             windowPos.x + windowWidth - 2.0f * buttonSize
@@ -283,7 +279,7 @@ void DrawCustomTitleBar(
     if (ImGui::Button("_##minimize", ImVec2(buttonSize, buttonSize)))
         isMinimized = true;
 
-    // Close button.
+    // Close button
     ImGui::SetCursorScreenPos(
         ImVec2(
             windowPos.x + windowWidth - buttonSize - rightPadding,
@@ -294,7 +290,6 @@ void DrawCustomTitleBar(
     if (ImGui::Button("×##close", ImVec2(buttonSize, buttonSize)))
         isOpen = false;
 
-    // Start application content underneath the title bar.
     ImGui::SetCursorPos(
         ImVec2(8.0f, titleBarHeight + 8.0f)
     );
@@ -370,14 +365,14 @@ void RenderCalculator(AppState& appState)
 
         calculatorButton("(", []()
         {
-            // Parentheses are not implemented in this basic calculator.
+            // Parentheses are not implemented.
         });
 
         ImGui::SameLine();
 
         calculatorButton(")", []()
         {
-            // Parentheses are not implemented in this basic calculator.
+            // Parentheses are not implemented.
         });
 
         ImGui::SameLine();
@@ -387,83 +382,29 @@ void RenderCalculator(AppState& appState)
             ChooseOperator('/');
         });
 
-        calculatorButton("7", []()
-        {
-            EnterDigit('7');
-        });
-
+        calculatorButton("7", []() { EnterDigit('7'); });
         ImGui::SameLine();
-
-        calculatorButton("8", []()
-        {
-            EnterDigit('8');
-        });
-
+        calculatorButton("8", []() { EnterDigit('8'); });
         ImGui::SameLine();
-
-        calculatorButton("9", []()
-        {
-            EnterDigit('9');
-        });
-
+        calculatorButton("9", []() { EnterDigit('9'); });
         ImGui::SameLine();
+        calculatorButton("*", []() { ChooseOperator('*'); });
 
-        calculatorButton("*", []()
-        {
-            ChooseOperator('*');
-        });
-
-        calculatorButton("4", []()
-        {
-            EnterDigit('4');
-        });
-
+        calculatorButton("4", []() { EnterDigit('4'); });
         ImGui::SameLine();
-
-        calculatorButton("5", []()
-        {
-            EnterDigit('5');
-        });
-
+        calculatorButton("5", []() { EnterDigit('5'); });
         ImGui::SameLine();
-
-        calculatorButton("6", []()
-        {
-            EnterDigit('6');
-        });
-
+        calculatorButton("6", []() { EnterDigit('6'); });
         ImGui::SameLine();
+        calculatorButton("-", []() { ChooseOperator('-'); });
 
-        calculatorButton("-", []()
-        {
-            ChooseOperator('-');
-        });
-
-        calculatorButton("1", []()
-        {
-            EnterDigit('1');
-        });
-
+        calculatorButton("1", []() { EnterDigit('1'); });
         ImGui::SameLine();
-
-        calculatorButton("2", []()
-        {
-            EnterDigit('2');
-        });
-
+        calculatorButton("2", []() { EnterDigit('2'); });
         ImGui::SameLine();
-
-        calculatorButton("3", []()
-        {
-            EnterDigit('3');
-        });
-
+        calculatorButton("3", []() { EnterDigit('3'); });
         ImGui::SameLine();
-
-        calculatorButton("+", []()
-        {
-            ChooseOperator('+');
-        });
+        calculatorButton("+", []() { ChooseOperator('+'); });
 
         calculatorButton("±", []()
         {
@@ -475,28 +416,14 @@ void RenderCalculator(AppState& appState)
 
         ImGui::SameLine();
 
-        calculatorButton("0", []()
-        {
-            EnterDigit('0');
-        });
-
+        calculatorButton("0", []() { EnterDigit('0'); });
         ImGui::SameLine();
-
-        calculatorButton(".", []()
-        {
-            AddDecimalPoint();
-        });
-
+        calculatorButton(".", []() { AddDecimalPoint(); });
         ImGui::SameLine();
-
-        calculatorButton("=", []()
-        {
-            CalculateResult();
-        });
+        calculatorButton("=", []() { CalculateResult(); });
     }
 
     ImGui::End();
-
     ImGui::PopStyleVar();
 
     if (!isOpen)
@@ -544,7 +471,6 @@ void RenderMediaPlayer(AppState& appState)
 
         ImGui::TextUnformatted("Now Playing");
         ImGui::Separator();
-
         ImGui::Spacing();
 
         ImGui::TextWrapped("%s", tracks[currentTrack]);
@@ -552,15 +478,12 @@ void RenderMediaPlayer(AppState& appState)
 
         ImGui::Spacing();
 
-        // Simulated playback progress.
         if (isPlaying)
         {
             playbackProgress += ImGui::GetIO().DeltaTime / 180.0f;
 
             if (playbackProgress >= 1.0f)
-            {
                 ChangeTrack(1);
-            }
         }
 
         ImGui::ProgressBar(
@@ -571,11 +494,8 @@ void RenderMediaPlayer(AppState& appState)
 
         ImGui::Spacing();
 
-        // Playback controls.
         if (ImGui::Button("Previous", ImVec2(100.0f, 32.0f)))
-        {
             ChangeTrack(-1);
-        }
 
         ImGui::SameLine();
 
@@ -590,13 +510,10 @@ void RenderMediaPlayer(AppState& appState)
         ImGui::SameLine();
 
         if (ImGui::Button("Next", ImVec2(100.0f, 32.0f)))
-        {
             ChangeTrack(1);
-        }
 
         ImGui::Spacing();
         ImGui::Separator();
-
         ImGui::TextUnformatted("Volume");
 
         ImGui::SliderFloat(
@@ -608,7 +525,6 @@ void RenderMediaPlayer(AppState& appState)
         );
 
         ImGui::Spacing();
-
         ImGui::TextUnformatted("Playlist");
 
         if (ImGui::BeginListBox(
@@ -645,7 +561,6 @@ void RenderMediaPlayer(AppState& appState)
     }
 
     ImGui::End();
-
     ImGui::PopStyleVar();
 
     if (!isOpen)
@@ -659,8 +574,13 @@ void RenderMediaPlayer(AppState& appState)
 // SYSTEM INFORMATION APPLICATION
 // ============================================================
 
-void RenderSystemInformation(AppState& appState)
+void RenderSystemInformation(
+    AppState& appState,
+    const AppConfig& config
+)
 {
+    (void)config;
+
     if (!appState.showSystemInformation ||
         appState.systemInformationMinimized)
     {
@@ -670,7 +590,7 @@ void RenderSystemInformation(AppState& appState)
     bool isOpen = true;
 
     ImGui::SetNextWindowSize(
-        ImVec2(380.0f, 340.0f),
+        ImVec2(420.0f, 410.0f),
         ImGuiCond_FirstUseEver
     );
 
@@ -693,7 +613,6 @@ void RenderSystemInformation(AppState& appState)
 
         ImGui::TextUnformatted("Desktop System");
         ImGui::Separator();
-
         ImGui::Spacing();
 
         ImGui::TextUnformatted("Operating System");
@@ -722,7 +641,7 @@ void RenderSystemInformation(AppState& appState)
             appState.showApplicationOne
                 ? (appState.applicationOneMinimized
                     ? "Minimized"
-                    : "Available")
+                    : "Open")
                 : "Closed"
         );
 
@@ -731,15 +650,30 @@ void RenderSystemInformation(AppState& appState)
             appState.showApplicationTwo
                 ? (appState.applicationTwoMinimized
                     ? "Minimized"
-                    : "Available")
+                    : "Open")
                 : "Closed"
         );
 
         ImGui::BulletText(
-            "System Information: Running"
+            "Task Manager: %s",
+            appState.showTaskManager
+                ? (appState.taskManagerMinimized
+                    ? "Minimized"
+                    : "Open")
+                : "Closed"
+        );
+
+        ImGui::BulletText(
+            "System Information: %s",
+            appState.showSystemInformation
+                ? (appState.systemInformationMinimized
+                    ? "Minimized"
+                    : "Open")
+                : "Closed"
         );
 
         ImGui::Spacing();
+        ImGui::Separator();
 
         ImGui::TextWrapped(
             "This application demonstrates system details "
@@ -748,7 +682,6 @@ void RenderSystemInformation(AppState& appState)
     }
 
     ImGui::End();
-
     ImGui::PopStyleVar();
 
     if (!isOpen)
@@ -762,11 +695,12 @@ void RenderSystemInformation(AppState& appState)
 // RENDER ALL APPLICATIONS
 // ============================================================
 
-void RenderApplications(AppState& appState, const AppConfig& config)
+void RenderApplications(
+    AppState& appState,
+    const AppConfig& config
+)
 {
-    (void)config;
-
     RenderCalculator(appState);
     RenderMediaPlayer(appState);
-    RenderSystemInformation(appState);
+    RenderSystemInformation(appState, config);
 }
